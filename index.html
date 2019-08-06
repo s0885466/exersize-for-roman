@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /**
+     * функция которая проверит правильно ли расставлены скобки в строке. Пример -
+     ((())) -> true, (())) -> false, ))( -> false, (())()()(()) -> true
+     **/
+
+    function isSort(arr) {
+        if (arr.length < 3) return true;
+
+        const rule = compare(arr, 1);
+
+        for (let i = 2; i < arr.length; i++) {
+            if (compare(arr, i) !== rule) {
+                return false
+            }
+        }
+
+        function compare(arr, i){
+            //цикл while добавлен на случай, если первые два числа равны
+            while (arr[i] === arr[i-1]) {
+                i++;
+            }
+            return arr[i] >= arr[i-1];
+        }
+
+        return true;
+
+    }
+
+    console.log(isSort([1,1,1]));
+
+
+</script>
+</body>
+</html>
